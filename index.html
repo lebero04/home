@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#171713" />
+  <title>Owen Home</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="room-shell" aria-label="Interactive home dashboard">
+    <img class="room-image" src="assets/room.png" alt="Illustrated open-plan living room and kitchen" />
+    <div class="room-shade" aria-hidden="true"></div>
+
+    <header class="topbar">
+      <div>
+        <div class="eyebrow">OWEN HOME</div>
+        <div class="today" id="todayLabel">September 2026</div>
+      </div>
+      <button class="help-btn" id="helpBtn" aria-label="How this works">?</button>
+    </header>
+
+    <!-- Hotspot deliberately uses percentages so it stays attached to the dining table as the image scales. -->
+    <div class="table-hotspot" aria-label="Kitchen table controls">
+      <div class="hotspot-glow"></div>
+      <div class="table-toggle" role="group" aria-label="Open kitchen tools">
+        <button class="table-toggle-btn active" data-open="dinner" aria-pressed="true">
+          <span class="toggle-icon">🍽</span><span>Dinner</span>
+        </button>
+        <button class="table-toggle-btn" data-open="shopping" aria-pressed="false">
+          <span class="toggle-icon">🛒</span><span>Shopping</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="scrim" id="scrim"></div>
+
+    <aside class="panel" id="panel" aria-hidden="true" aria-label="Kitchen management panel">
+      <div class="panel-grabber"></div>
+      <div class="panel-header">
+        <div>
+          <div class="eyebrow panel-eyebrow">KITCHEN TABLE</div>
+          <h1 id="panelTitle">Dinner Schedule</h1>
+        </div>
+        <button class="close-btn" id="closeBtn" aria-label="Close">×</button>
+      </div>
+
+      <div class="primary-tabs" role="tablist">
+        <button class="primary-tab active" data-tab="dinner" role="tab">Dinner Schedule</button>
+        <button class="primary-tab" data-tab="shopping" role="tab">Shopping List</button>
+      </div>
+
+      <section class="tab-panel active" id="dinnerPanel">
+        <div class="section-row">
+          <div>
+            <div class="section-kicker" id="dinnerRangeLabel">THIS WEEK</div>
+            <p class="section-copy">Tap any dinner to edit it. Changes stay saved on this device.</p>
+          </div>
+          <button class="ghost-btn" id="calendarToggle">Full month</button>
+        </div>
+        <div id="dinnerList" class="dinner-list"></div>
+        <div id="monthGrid" class="month-grid-wrap hidden"></div>
+      </section>
+
+      <section class="tab-panel" id="shoppingPanel">
+        <div class="shopping-mode" role="group" aria-label="Shopping list mode">
+          <button class="mode-btn active" data-mode="weekly">This week</button>
+          <button class="mode-btn" data-mode="master">Master list</button>
+        </div>
+        <div class="progress-wrap">
+          <div class="progress-copy"><span id="progressText">0 of 0 checked</span><button class="text-btn" id="clearChecks">Clear checks</button></div>
+          <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+        </div>
+        <div id="weekSelector" class="week-selector"></div>
+        <div id="shoppingList"></div>
+        <form id="addItemForm" class="add-item-form">
+          <input id="addItemInput" type="text" placeholder="Add a personal item…" autocomplete="off" />
+          <button type="submit">Add</button>
+        </form>
+      </section>
+    </aside>
+
+    <div class="tip" id="tip">
+      <strong>Your room is the menu.</strong>
+      <span>Use the controls sitting on the kitchen table. More objects can become tools later.</span>
+      <button id="dismissTip">Got it</button>
+    </div>
+  </main>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
